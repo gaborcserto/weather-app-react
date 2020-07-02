@@ -5,7 +5,8 @@ import WeatherBoxLocation from './WeatherBoxLocation/WeatherBoxLocation';
 import WeatherBoxDescription from './WeatherBoxDescription/WeatherBoxDescription';
 import WeatherBoxOtherData from './WeatherBoxOtherData/WeatherBoxOtherData';
 import CurrentTime from '../CurrentTime/CurrentTime';
-import {Col, Row} from 'react-bootstrap';
+import {Col, Row, Button} from 'react-bootstrap';
+import {AiOutlineReload} from 'react-icons/ai'
 import * as WeatherIcons from 'react-icons/wi';
 
 const weatherBox = props => {
@@ -21,13 +22,11 @@ const weatherBox = props => {
 		</React.Fragment>
 	);
 
-	console.log(props.weatherTodayData);
-
-
 	if (props.weatherTodayData.sys.pod !== 'd') dayOrNight = ' nightMode';
 
 	return (
 		<div className={`weatherBox${dayOrNight}`}>
+			<Button variant="link" className="weatherBox__reloadButton"><AiOutlineReload /></Button>
 			<div className="weatherBox__mainContent">
 				<WeatherIcon
 					type={props.weatherTodayData.weather[0].id}

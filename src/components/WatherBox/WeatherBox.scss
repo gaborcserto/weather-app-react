@@ -14,6 +14,14 @@
 	position: relative;
 	width: 350px;
 
+	&__reloadButton {
+		color: $blue-2;
+		font-size: 25px;
+		right: 0;
+		position: absolute;
+		top: 0;
+	}
+
 	&__mainContent {
 		padding-bottom: 10px;
 
@@ -80,7 +88,7 @@
 		color: $gray-1;
 		margin-left: 0;
 		margin-right: 0;
-		padding-bottom: 16px;
+		padding-bottom: 10px;
 
 		.col {
 			background: $white;
@@ -103,6 +111,10 @@
 				margin-left: 2.5px;
 				margin-right: 0;
 			}
+		}
+
+		&:last-child {
+			padding-bottom: 0;
 		}
 
 		&__type {
@@ -156,6 +168,10 @@
 
 	&.nightMode {
 		background: $blue-2;
+
+		.weatherBox__reloadButton {
+			color: $white;
+		}
 
 		.weatherBox__mainContent {
 			.weatherIcon {

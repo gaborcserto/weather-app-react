@@ -1,5 +1,5 @@
 .searchBox {
-	@include border-radius(40px);
+	@include border-radius(20px);
 	background: $white;
 	box-shadow:
 			0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -11,18 +11,20 @@
 	margin-bottom:40px;
 	overflow: hidden;
 
-	.form-control {
+	&__input {
 		border: 0;
 		outline: none;
 
 		&:focus {
 			box-shadow: none;
 		}
+	}
 
-		.btn {
-			&:focus {
-				box-shadow: none;
-			}
+	&__button {
+		color: $gray-1;
+
+		&:focus {
+			box-shadow: none;
 		}
 	}
 }

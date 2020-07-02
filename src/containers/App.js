@@ -18,7 +18,7 @@ class App extends React.Component {
 		weatherTodayData: null,
 		city: 'Budapest',
 		lat: 47.498,
-		lon: 19.0399,
+		lng: 19.0399,
 		units: 'metric',
 		lang: 'hu',
 		isLoaded: false,
@@ -27,7 +27,6 @@ class App extends React.Component {
 
 	async componentDidMount() {
 		const URL = `${process.env.REACT_APP_WEATHER_API_URL}/forecast/?q=${this.state.city}&units=${this.state.units}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-		console.log(URL);
 		try {
 			let result = await axios.get(URL);
 			let weatherData = result.data;

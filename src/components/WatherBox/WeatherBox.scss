@@ -166,6 +166,11 @@
 		}
 	}
 
+	.random {
+		color: $blue-2;
+		font-size: 8px;
+	}
+
 	&.nightMode {
 		background: $blue-2;
 
@@ -208,6 +213,10 @@
 			&__title {
 				color: $white;
 			}
+		}
+
+		.random {
+			color: $white;
 		}
 	}
 }

@@ -7,6 +7,11 @@ import './App.scss';
 
 class App extends React.Component {
 
+	constructor(){
+		super();
+		this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+	};
+
 	state = {
 		weatherData: null,
 		weatherTodayData: null,
@@ -31,11 +36,15 @@ class App extends React.Component {
 		}
 	}
 
+	forceUpdateHandler(){
+		this.forceUpdate();
+	};
+
 	render() {
 		let boxContent;
 
 		if (this.state.isLoaded) {
-			boxContent = <Box weatherAllData={this.state.weatherData} weatherTodayData={this.state.weatherTodayData} />;
+			boxContent = <Box weatherAllData={this.state.weatherData} weatherTodayData={this.state.weatherTodayData} clicked={this.forceUpdateHandler} />;
 		} else {
 			boxContent = <h1><WeatherIcons.WiAlien/></h1>;
 		}
@@ -43,7 +52,7 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<Container fluid className="main">
-						{boxContent}
+					{boxContent}
 				</Container>
 			</div>
 		);

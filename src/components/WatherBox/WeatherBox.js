@@ -26,7 +26,7 @@ const weatherBox = props => {
 
 	return (
 		<div className={`weatherBox${dayOrNight}`}>
-			<Button variant="link" className="weatherBox__reloadButton"><AiOutlineReload /></Button>
+			<Button variant="link" className="weatherBox__reloadButton" onClick={props.clicked}><AiOutlineReload /></Button>
 			<div className="weatherBox__mainContent">
 				<WeatherIcon
 					type={props.weatherTodayData.weather[0].id}
@@ -96,6 +96,7 @@ const weatherBox = props => {
 						icon={<WeatherIcons.WiRaindrop />}/>
 				</Col>
 			</Row>
+			<div className="random">{ Math.random() }</div>
 		</div>
 	);
 }

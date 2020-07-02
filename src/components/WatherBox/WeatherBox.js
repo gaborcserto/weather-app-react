@@ -10,7 +10,8 @@ import {AiOutlineReload} from 'react-icons/ai'
 import * as WeatherIcons from 'react-icons/wi';
 
 const weatherBox = props => {
-	let dayOrNight = '';
+	let dayOrNight = '',
+		convertedRainData = '0';
 	const dataTime = props.weatherTodayData.dt_txt.split(' ');
 	const rainData = props.weatherTodayData.rain;
 	const tempMinMax = (
@@ -21,6 +22,8 @@ const weatherBox = props => {
 			<span>°C</span>
 		</React.Fragment>
 	);
+
+	if (props.weatherTodayData.rain) convertedRainData = rainData[Object.keys(rainData)[0]];
 
 	if (props.weatherTodayData.sys.pod !== 'd') dayOrNight = ' nightMode';
 
@@ -90,7 +93,7 @@ const weatherBox = props => {
 				<Col>
 					<WeatherBoxOtherData
 						rootClass="weatherBox__otherData"
-						data={rainData[Object.keys(rainData)[0]]}
+						data={convertedRainData}
 						unit="mm"
 						title="Rain"
 						icon={<WeatherIcons.WiRaindrop />}/>

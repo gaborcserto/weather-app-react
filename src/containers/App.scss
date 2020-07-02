@@ -1,5 +1,6 @@
 @import '../assets/scss/mixins';
 @import '../assets/scss/color';
+@import '../components/SearchBox/SearcBox';
 @import '../components/WatherBox/WeatherBox';
 
 .App {
@@ -11,4 +12,9 @@
 	align-items: center;
 	display: flex;
 	height: 100vh;
+
+	&__content {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }

@@ -11,6 +11,18 @@ import * as WeatherIcons from 'react-icons/wi';
 const weatherBox = props => {
 	let dayOrNight = '';
 	const dataTime = props.weatherTodayData.dt_txt.split(' ');
+	const rainData = props.weatherTodayData.rain;
+	const tempMinMax = (
+		<React.Fragment>
+			<span>{props.weatherTodayData.main.temp_min}</span>
+			<span>°C</span>
+			<span>{props.weatherTodayData.main.temp_max}</span>
+			<span>°C</span>
+		</React.Fragment>
+	);
+
+	console.log(props.weatherTodayData);
+
 
 	if (props.weatherTodayData.sys.pod !== 'd') dayOrNight = ' nightMode';
 
@@ -36,29 +48,41 @@ const weatherBox = props => {
 			<Row className="weatherBox__otherData">
 				<Col>
 					<WeatherBoxOtherData
-						data={props.weatherTodayData.main.humidity}
-						unit="Km/h"
+						rootClass="weatherBox__otherData"
+						data={props.weatherTodayData.wind.speed}
+						unit="m/s"
 						title="Wind Flow"
-						icon={<WeatherIcons.WiHumidity />}/>
+						icon={<WeatherIcons.WiStrongWind />}/>
 				</Col>
 				<Col>
 					<WeatherBoxOtherData
-						data={props.weatherTodayData.wind.speed}
+						rootClass="weatherBox__otherData"
+						data={props.weatherTodayData.main.pressure}
+						unit="hPa"
+						title="Air Pressure"
+						icon={<WeatherIcons.WiBarometer />}/>
+				</Col>
+				<Col>
+					<WeatherBoxOtherData
+						rootClass="weatherBox__otherData"
+						data={props.weatherTodayData.main.humidity}
 						unit="%"
 						title="Humidity"
-						icon={<WeatherIcons.WiStrongWind />}/>
+						icon={<WeatherIcons.WiHumidity />}/>
 				</Col>
 			</Row>
 			<Row className="weatherBox__otherData">
 				<Col>
 					<WeatherBoxOtherData
-						data={props.weatherTodayData.main.temp_min}
-						unit="°C"
-						title="Min"
+						rootClass="temp weatherBox__otherData"
+						data={tempMinMax}
+						unit=""
+						title="Temp"
 						icon={<WeatherIcons.WiThermometer />}/>
 				</Col>
 				<Col>
 					<WeatherBoxOtherData
+						rootClass="weatherBox__otherData"
 						data={dataTime[1]}
 						unit=""
 						title="Data"
@@ -66,10 +90,11 @@ const weatherBox = props => {
 				</Col>
 				<Col>
 					<WeatherBoxOtherData
-						data={props.weatherTodayData.main.temp_max}
-						unit="°C"
-						title="Max"
-						icon={<WeatherIcons.WiThermometer />}/>
+						rootClass="weatherBox__otherData"
+						data={rainData[Object.keys(rainData)[0]]}
+						unit="mm"
+						title="Rain"
+						icon={<WeatherIcons.WiRaindrop />}/>
 				</Col>
 			</Row>
 		</div>

@@ -1,0 +1,162 @@
+//btn-variant
+@mixin btn-variant ($background, $color) {
+	background-color: $background;
+	border-color: $background;
+	box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+	color: $color;
+
+	&.focus,
+	&:hover,
+	&:focus {
+		background-color: darken($background,8%);
+		border-color: darken($background,8%);
+		color: $color;
+	}
+
+	&:active {
+		background: darken($background,25%);
+		border-color: darken($background,25%);
+		color: $color;
+	}
+}
+
+//box sizing
+@mixin box-sizing($box-property) {
+	box-sizing: $box-property;
+}
+
+//box shadow
+@mixin box-shadow($shadow-property) {
+	box-shadow: $shadow-property;
+}
+
+//border radius
+@mixin border-top-left-radius($radius) {
+	border-top-left-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-top-right-radius($radius) {
+	border-top-right-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-bottom-left-radius($radius) {
+	border-bottom-left-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-bottom-right-radius($radius) {
+	border-bottom-right-radius: $radius;
+	background-clip: padding-box;
+}
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	background-clip: padding-box;
+}
+
+//transform
+@mixin transform($transform-property) {
+	-webkit-transform: $transform-property;
+	-moz-transform: $transform-property;
+	-ms-transform: $transform-property;
+	-o-transform: $transform-property;
+	transform: $transform-property;
+}
+
+//transition
+@mixin transition($transition-property...) {
+	transition: $transition-property;
+}
+
+//positions
+@mixin center-align() {
+	@include transform(translate(-50%, -50%));
+	position: relative;
+	left: 50%;
+	top: 50%;
+}
+
+@mixin vertical-align() {
+	@include transform(translateY(-50%));
+	position: relative;
+	top: 50%;
+}
+
+@mixin horizontal-align() {
+	@include transform(translateX(-50%));
+	position: relative;
+	left: 50%;
+}
+
+@mixin vertical-align-absolute() {
+	@include vertical-align();
+	position: absolute;
+}
+
+@mixin horizontal-align-absolute() {
+	@include horizontal-align();
+	position: absolute;
+}
+
+@mixin center-align-absolute() {
+	@include center-align();
+	position: absolute;
+}
+
+
+//placeholder
+@mixin placeholder($color, $weight:"") {
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		font-weight: $weight;
+	}
+}
+
+//separator
+@mixin separator($style, $color) {
+	border: 0;
+	border-bottom: 1px $style $color;
+}
+
+@mixin separator-top($style, $color) {
+	border: 0;
+	border-top: 1px $style $color;
+}
+
+//animation
+@mixin animation-name($animation) {
+	-webkit-animation-name: $animation;
+	-moz-animation-name: $animation;
+	-o-animation-name: $animation;
+	animation-name: $animation;
+}
+
+//keyframes
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}

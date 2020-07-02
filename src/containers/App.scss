@@ -1,0 +1,14 @@
+@import '../assets/scss/mixins';
+@import '../assets/scss/color';
+@import '../components/WatherBox/WeatherBox';
+
+.App {
+	text-align: center;
+	background: #90c9fe;
+}
+
+.main {
+	align-items: center;
+	display: flex;
+	height: 100vh;
+}

@@ -1,0 +1,169 @@
+.weatherBox {
+	@include border-radius(10px);
+	background: $blue-1;
+	box-shadow:
+			0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+			0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+			0 12.5px 10px rgba(0, 0, 0, 0.06),
+			0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+			0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+			0 100px 80px rgba(0, 0, 0, 0.12);
+	min-height: 500px;
+	margin: 0 auto;
+	padding: 10px;
+	position: relative;
+	width: 350px;
+
+	&__mainContent {
+		padding-bottom: 10px;
+
+		.weatherIcon {
+			@include horizontal-align-absolute;
+			color: $blue-2;
+			display: inline-block;
+			filter: drop-shadow(0 10px 10px rgba(0,0,0,.45));
+			font-size: 60px;
+
+		}
+
+		&__temp {
+			color: $gray-1;
+			font-size: 40px;
+			padding-top: 150px;
+
+			&__feels {
+				font-size: 15px;
+				margin: 0;
+			}
+
+			&__unit {
+				font-size: 20px;
+			}
+		}
+
+		&__times {
+			color: $blue-3;
+			padding-bottom: 16px;
+
+			&__time {
+				font-size: 30px;
+				line-height: 34px;
+				margin: 0;
+			}
+
+			&__date {
+				font-size: 15px;
+				margin: 0;
+			}
+
+		}
+
+		&__location {
+			color: $gray-1;
+			font-size: 16px;
+			font-weight: bold;
+			text-transform: uppercase
+		}
+
+		&__description {
+			color: $gray-1;
+			font-size: 16px;
+			text-transform: uppercase;
+		}
+	}
+
+	&__otherData {
+		color: $gray-1;
+		margin-left: 0;
+		margin-right: 0;
+		padding-bottom: 16px;
+
+		.col {
+			background: $white;
+			box-shadow:
+					0 1px 1px rgba(0,0,0,0.15);
+			margin-left: 2.5px;
+			margin-right: 2.5px;
+			padding: 10px;
+
+			&:first-child {
+				@include border-bottom-left-radius(5px);
+				@include border-top-left-radius(5px);
+				margin-left: 0;
+				margin-right: 2.5px;
+			}
+
+			&:last-child {
+				@include border-bottom-right-radius(5px);
+				@include border-top-right-radius(5px);
+				margin-left: 2.5px;
+				margin-right: 0;
+			}
+		}
+
+		&__type {
+			color: $blue-3;
+			font-size: 20px;
+
+			&__unit {
+				font-size: 10px;
+			}
+		}
+
+		&__icon {
+			font-size: 30px;
+			height: 30px;
+			position: relative;
+
+			svg {
+				@include center-align-absolute;
+				color: $blue-2;
+			}
+		}
+
+		&__title {
+			font-size: 16px;
+		}
+	}
+
+	&.nightMode {
+		background: $blue-2;
+
+		.weatherBox__mainContent {
+			.weatherIcon {
+				color: $white;
+				filter: drop-shadow(0 10px 10px rgba(255, 255, 255, .45));
+			}
+
+			&__temp {
+				color: $white;
+			}
+
+			&__location {
+				color: $white;
+			}
+
+			&__description {
+				color: $white;
+			}
+		}
+
+		.weatherBox__otherData {
+			.col {
+				background: $blue-4;
+				box-shadow:
+						0 1px 1px rgba(255, 255, 255, .15);
+			}
+
+			&__icon {
+				svg {
+					color: $white;
+				}
+			}
+
+			&__title {
+				color: $white;
+			}
+		}
+	}
+}

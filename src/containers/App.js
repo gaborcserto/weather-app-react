@@ -62,7 +62,6 @@ class App extends React.Component {
 
 	render() {
 		let boxContent;
-		console.log(this.state);
 
 		if (this.state.isLoaded && this.state.isLoadedCurrent) {
 			boxContent = <WeatherBox

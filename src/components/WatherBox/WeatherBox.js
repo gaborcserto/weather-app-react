@@ -24,7 +24,7 @@ const weatherBox = props => {
 			<span>°C</span>
 		</React.Fragment>
 	);
-	console.log(props);
+
 	if (props.weatherTodayData.rain) convertedRainData = rainData[Object.keys(rainData)[0]];
 
 	if (props.weatherTodayData.sys.pod !== 'd') dayOrNight = ' nightMode';

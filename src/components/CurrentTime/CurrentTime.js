@@ -9,15 +9,18 @@ class currentTime extends React.Component {
 			currentDate: moment().format('YYYY.MM.DD.')
 		};
 	}
+
 	componentDidMount() {
 		this.intervalID = setInterval(
 			() => this.tick(),
 			1000
 		);
 	}
+
 	componentWillUnmount() {
 		clearInterval(this.intervalID);
 	}
+
 	tick() {
 		this.setState({
 			currentTime: moment().format('HH:mm:ss'),

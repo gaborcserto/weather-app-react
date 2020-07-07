@@ -16,7 +16,7 @@
 
 
 	&__inner {
-		@include center-align
+		@include center-align;
 
 		span {
 			display: inline-block;

@@ -1,5 +1,7 @@
 .searchBox {
-	margin-bottom: 20px;
+	margin: 0 auto 40px;
+	padding-right: 0;
+	padding-left: 0;
 	position: relative;
 	width: 100%;
 
@@ -11,6 +13,8 @@
 	}
 
 	.rbt {
+		width: 100%;
+
 		&-input-main {
 			@include border-radius(20px);
 			background: $white;
@@ -20,7 +24,7 @@
 			0 22.3px 17.9px rgba(0, 0, 0, 0.072),
 			0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 			0 100px 80px rgba(0, 0, 0, 0.12);
-			margin-bottom: 40px;
+
 			overflow: hidden;
 		}
 

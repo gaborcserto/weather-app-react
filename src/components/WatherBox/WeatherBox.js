@@ -3,7 +3,7 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import WeatherBoxTemp from './WeatherBoxTemp/WeatherBoxTemp';
 import WeatherBoxLocation from './WeatherBoxLocation/WeatherBoxLocation';
 import WeatherBoxDescription from './WeatherBoxDescription/WeatherBoxDescription';
-import WeatherBoxOtherData from './WeatherBoxOtherData/WeatherBoxOtherData';
+import BoxOtherData from '../BoxOtherData/BoxOtherData';
 import CurrentTime from '../CurrentTime/CurrentTime';
 import { Col, Row, Button } from 'react-bootstrap';
 import { AiOutlineReload, AiOutlineEye } from 'react-icons/ai';
@@ -16,20 +16,20 @@ const weatherBox = props => {
 		sufix = 'd',
 		convertedRainData = '0';
 	const dataTime =  moment(props.weatherCurrentData.dt, "X").utcOffset(1).format('HH:mm:ss');
-	const rainData = props.weatherTodayData.rain;
+	const rainData = props.weatherCurrentData.rain;
 	const numberFormat = (number) => Math.round(number * 10) / 10;
 	const currentTime = moment().valueOf();
 
 	const tempMinMax = (
 		<React.Fragment>
-			<span>{numberFormat(props.weatherTodayData.main.temp_min)}</span>
+			<span>{numberFormat(props.weatherDailyData[0].temp.min)}</span>
 			<span>°C</span>
-			<span>{numberFormat(props.weatherTodayData.main.temp_max)}</span>
+			<span>{numberFormat(props.weatherDailyData[0].temp.max)}</span>
 			<span>°C</span>
 		</React.Fragment>
 	);
 
-	if (props.weatherTodayData.rain) convertedRainData = rainData[Object.keys(rainData)[0]];
+	if (rainData > 0) convertedRainData = rainData[Object.keys(rainData)[0]];
 
 	if(props.weatherCurrentData.sunset > currentTime || props.weatherCurrentData.sunsrise < currentTime) {
 		dayOrNight = ' nightMode';
@@ -45,20 +45,21 @@ const weatherBox = props => {
 					sufix={sufix} />
 				<WeatherBoxTemp
 					rootClass="weatherBox__mainContent"
-				    location={props.weatherAllData.city}
 				    temp={numberFormat(props.weatherCurrentData.temp)}
 				    feels={numberFormat(props.weatherCurrentData.feels_like)} unit="°C" />
 				<CurrentTime rootClass="weatherBox__mainContent" />
 				<WeatherBoxLocation
 					rootClass="weatherBox__mainContent"
-					location={props.weatherAllData.city} />
+					city={props.city}
+					country={props.country}
+				/>
 				<WeatherBoxDescription
 					rootClass="weatherBox__mainContent"
 					description={props.weatherCurrentData.weather[0].description} />
 			</div>
 			<Row className="weatherBox__otherData">
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={props.weatherCurrentData.wind_speed}
 						unit="m/s"
@@ -66,7 +67,7 @@ const weatherBox = props => {
 						icon={<WeatherIcons.WiCloudyWindy />}/>
 				</Col>
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={props.weatherCurrentData.pressure}
 						unit="hPa"
@@ -74,7 +75,7 @@ const weatherBox = props => {
 						icon={<WeatherIcons.WiBarometer />}/>
 				</Col>
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={props.weatherCurrentData.humidity}
 						unit="%"
@@ -84,7 +85,7 @@ const weatherBox = props => {
 			</Row>
 			<Row className="weatherBox__otherData">
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="temp weatherBox__otherData"
 						data={tempMinMax}
 						unit=""
@@ -92,7 +93,7 @@ const weatherBox = props => {
 						icon={<WeatherIcons.WiThermometer />}/>
 				</Col>
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={props.weatherCurrentData.uvi}
 						unit=""
@@ -102,7 +103,7 @@ const weatherBox = props => {
 			</Row>
 			<Row className="weatherBox__otherData">
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={props.weatherCurrentData.visibility}
 						unit="m"
@@ -110,7 +111,7 @@ const weatherBox = props => {
 						icon={<AiOutlineEye />}/>
 				</Col>
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={dataTime}
 						unit=""
@@ -118,7 +119,7 @@ const weatherBox = props => {
 						icon={<MdUpdate />}/>
 				</Col>
 				<Col>
-					<WeatherBoxOtherData
+					<BoxOtherData
 						rootClass="weatherBox__otherData"
 						data={convertedRainData}
 						unit="mm/h"

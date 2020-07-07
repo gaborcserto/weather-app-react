@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import SearchBox from '../components/SearchBox/SearchBox';
 import WeatherBox from '../components/WatherBox/WeatherBox';
+import Forecast from '../components/Forecast/Forecast';
 import Loader from '../components/Loader/Loader';
 import cities from 'cities.json';
 import './App.scss';
@@ -10,8 +11,6 @@ import './App.scss';
 class App extends React.Component {
 
 	state = {
-		weatherData: null,
-		weatherTodayData: null,
 		weatherDailyData: null,
 		weatherCurrentData: null,
 		city: 'Budapest',
@@ -20,7 +19,6 @@ class App extends React.Component {
 		lng: 19.0399,
 		units: 'metric',
 		lang: 'hu',
-		isLoaded: false,
 		isLoadedCurrent: false,
 		isSearchLoading: false,
 		options: [],
@@ -67,21 +65,7 @@ class App extends React.Component {
 	}
 
 	async getWeather(city, units, lat, lng) {
-		const URL1 = `${process.env.REACT_APP_WEATHER_API_URL}/forecast/?q=${city}&units=${units}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
 		const URL2 = `${process.env.REACT_APP_WEATHER_API_URL}/onecall?lat=${lat}&lon=${lng}&units=${units}&exclude=hourly&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-		try {
-			let result = await axios.get(URL1);
-			let weatherData = result.data;
-
-			this.setState({
-				...this.state,
-				weatherData: weatherData,
-				weatherTodayData: weatherData.list[0],
-				isLoaded: true
-			});
-		} catch (error) {
-			console.log(`😱 Axios request failed: ${error}`);
-		}
 
 		try {
 			let result = await axios.get(URL2);
@@ -99,30 +83,38 @@ class App extends React.Component {
 	}
 
 	render() {
-		let boxContent;
+		let boxContent = <Loader />;
 
-		if (this.state.isLoaded && this.state.isLoadedCurrent) {
-			boxContent = <WeatherBox
-				weatherAllData={this.state.weatherData}
-				weatherTodayData={this.state.weatherTodayData}
-				weatherCurrentData={this.state.weatherCurrentData}
-				clicked={this.handleForceUpdate} />;
-		} else {
-			boxContent = <Loader />;
+		if (this.state.isLoadedCurrent) {
+			boxContent = (<React.Fragment>
+				<Col className="main__content__col" md={12} lg={6}>
+					<WeatherBox
+					city={this.state.city}
+					country={this.state.country}
+					weatherCurrentData={this.state.weatherCurrentData}
+					weatherDailyData={this.state.weatherDailyData}
+					clicked={this.handleForceUpdate} />
+				</Col>
+				<Col className="main__content__col" md={12} lg={6}>
+					<Forecast
+						weatherCurrentData={this.state.weatherCurrentData}
+						weatherDailyData={this.state.weatherDailyData}
+					/>
+				</Col>
+				</React.Fragment>);
 		}
 
 		return (
 			<div className="App">
-				<Container fluid className="main">
+				<Container className="main">
+					<SearchBox
+						{...this.state}
+						loaded={this.state.isSearchLoading}
+						searched={(e) => this.handleSearch(e)}
+						changed={(e) => this.handleCityChange(e)}
+						options={this.state.options}
+					/>
 					<Row className="main__content">
-						<SearchBox
-							{...this.state}
-							loaded={this.state.isSearchLoading}
-							searched={(e) => this.handleSearch(e)}
-							changed={(e) => this.handleCityChange(e)}
-							options={this.state.options}
-						/>
-						<div className="clearfix" />
 						{boxContent}
 					</Row>
 				</Container>

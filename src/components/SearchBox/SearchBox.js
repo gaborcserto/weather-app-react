@@ -1,11 +1,12 @@
 import React from 'react';
 import { FaSearchLocation } from 'react-icons/fa'
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import { Col } from 'react-bootstrap';
 
 const searchBox = props => {
 
 	return (
-		<div className="searchBox">
+		<Col className="searchBox" xs={12} md={6}>
 			<AsyncTypeahead
 				id="async-example"
 				isLoading={props.loaded}
@@ -25,7 +26,7 @@ const searchBox = props => {
 				)}
 			/>
 			<div className="searchBox__icon"><FaSearchLocation /></div>
-		</div>
+		</Col>
 	)
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const weatherBoxOtherData = props => {
+const boxOtherData = props => {
 	return (
 		<React.Fragment>
 			<div className={`${props.rootClass}__type`}>
@@ -8,9 +8,9 @@ const weatherBoxOtherData = props => {
 				<span className={`${props.rootClass}__type__unit`}>{props.unit}</span>
 			</div>
 			<div className={`${props.rootClass}__icon`}>{props.icon}</div>
-			<h2 className={`${props.rootClass}__title`}>{props.title}</h2>
+			<h3 className={`${props.rootClass}__title`}>{props.title}</h3>
 		</React.Fragment>
 	);
 }
 
-export default weatherBoxOtherData;
+export default boxOtherData;

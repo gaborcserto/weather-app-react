@@ -2,13 +2,10 @@ import React from 'react';
 import moment from 'moment';
 
 class currentTime extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			currentTime: moment().format('HH:mm:ss'),
-			currentDate: moment().format('YYYY.MM.DD.')
-		};
-	}
+	state = {
+		currentTime: moment().format('HH:mm:ss'),
+		currentDate: moment().format('YYYY.MM.DD.')
+	};
 
 	componentDidMount() {
 		this.intervalID = setInterval(

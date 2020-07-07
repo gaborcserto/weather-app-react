@@ -1,40 +1,81 @@
 import React from 'react';
 import axios from 'axios';
-import {Container, Row} from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import SearchBox from '../components/SearchBox/SearchBox';
 import WeatherBox from '../components/WatherBox/WeatherBox';
-import * as WeatherIcons from 'react-icons/wi';
+import Loader from '../components/Loader/Loader';
+import cities from 'cities.json';
 import './App.scss';
 
 class App extends React.Component {
 
-	constructor(){
-		super();
-		this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-	};
-
 	state = {
 		weatherData: null,
 		weatherTodayData: null,
+		weatherDailyData: null,
 		weatherCurrentData: null,
 		city: 'Budapest',
+		country: 'HU',
 		lat: 47.498,
 		lng: 19.0399,
 		units: 'metric',
 		lang: 'hu',
 		isLoaded: false,
 		isLoadedCurrent: false,
-		error: false
+		isSearchLoading: false,
+		options: [],
+		selected: [],
+		error: false,
 	}
 
-	async componentDidMount() {
-		const URL1 = `${process.env.REACT_APP_WEATHER_API_URL}/forecast/?q=${this.state.city}&units=${this.state.units}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
-		const URL2 = `${process.env.REACT_APP_WEATHER_API_URL}/onecall?lat=${this.state.lat}&lon=${this.state.lng}&units=${this.state.units}&exclude=hourly,daily&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+	handleCityChange = (item) => {
+		if(item.length > 0) {
+			this.setState({
+				...this.state,
+				city: item[0].name,
+				country: item[0].country,
+				lat: item[0].lat,
+				lng: item[0].lng
+			});
+
+			this.getWeather(item[0].name, this.state.units, item[0].lat, item[0].lng);
+		}
+	}
+
+	handleSearch = (query) => {
+		this.setState({isSearchLoading: true});
+		const result = cities.filter(city => city.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+
+		if(result !== undefined) {
+			console.log(result);
+			const options = result.map((items) => ({
+				name: items.name,
+				country: items.country,
+				lat: items.lat,
+				lng: items.lng
+			}));
+			this.setState({options: options});
+		}
+		this.setState({isSearchLoading: false});
+	}
+
+	handleForceUpdate = () => {
+		this.forceUpdate();
+	}
+
+	componentDidMount() {
+		this.getWeather(this.state.city, this.state.units, this.state.lat, this.state.lng);
+	}
+
+	async getWeather(city, units, lat, lng) {
+		const URL1 = `${process.env.REACT_APP_WEATHER_API_URL}/forecast/?q=${city}&units=${units}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
+		const URL2 = `${process.env.REACT_APP_WEATHER_API_URL}/onecall?lat=${lat}&lon=${lng}&units=${units}&exclude=hourly&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
 		try {
 			let result = await axios.get(URL1);
 			let weatherData = result.data;
 
 			this.setState({
+				...this.state,
 				weatherData: weatherData,
 				weatherTodayData: weatherData.list[0],
 				isLoaded: true
@@ -48,6 +89,8 @@ class App extends React.Component {
 			let weatherAllData = result.data;
 
 			this.setState({
+				...this.state,
+				weatherDailyData: weatherAllData.daily,
 				weatherCurrentData: weatherAllData.current,
 				isLoadedCurrent: true
 			})
@@ -55,10 +98,6 @@ class App extends React.Component {
 			console.log(`😱 Axios request failed: ${error}`);
 		}
 	}
-
-	forceUpdateHandler(){
-		this.forceUpdate();
-	};
 
 	render() {
 		let boxContent;
@@ -68,16 +107,22 @@ class App extends React.Component {
 				weatherAllData={this.state.weatherData}
 				weatherTodayData={this.state.weatherTodayData}
 				weatherCurrentData={this.state.weatherCurrentData}
-				clicked={this.forceUpdateHandler} />;
+				clicked={this.handleForceUpdate} />;
 		} else {
-			boxContent = <h1><WeatherIcons.WiAlien/></h1>;
+			boxContent = <Loader />;
 		}
 
 		return (
 			<div className="App">
 				<Container fluid className="main">
 					<Row className="main__content">
-						<SearchBox />
+						<SearchBox
+							{...this.state}
+							loaded={this.state.isSearchLoading}
+							searched={(e) => this.handleSearch(e)}
+							changed={(e) => this.handleCityChange(e)}
+							options={this.state.options}
+						/>
 						<div className="clearfix" />
 						{boxContent}
 					</Row>

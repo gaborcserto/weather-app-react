@@ -1,21 +1,32 @@
 import React from 'react';
-import {InputGroup, FormControl, Button} from 'react-bootstrap';
-import {FaSearchLocation} from 'react-icons/fa'
+import { FaSearchLocation } from 'react-icons/fa'
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
 
 const searchBox = props => {
+
 	return (
-		<InputGroup className="searchBox">
-			<FormControl
-				className="searchBox__input"
-				placeholder="City"
-				aria-label="City"
-				aria-describedby="basic-addon2"
+		<div className="searchBox">
+			<AsyncTypeahead
+				id="async-example"
+				isLoading={props.loaded}
+				labelKey="name"
+				minLength={3}
+				onChange={props.changed}
+				onSearch={props.searched}
+				options={props.options}
+				placeholder="Enter city name..."
+				renderMenuItemChildren={(option) => (
+					<React.Fragment>
+						<span>
+							{option.name}
+							<small>: {option.country}</small>
+						</span>
+					</React.Fragment>
+				)}
 			/>
-			<InputGroup.Append>
-				<Button className="searchBox__button" variant="link"><FaSearchLocation /></Button>
-			</InputGroup.Append>
-		</InputGroup>
-	);
+			<div className="searchBox__icon"><FaSearchLocation /></div>
+		</div>
+	)
 }
 
 export default searchBox;

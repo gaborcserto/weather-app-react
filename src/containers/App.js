@@ -47,7 +47,6 @@ class App extends React.Component {
 		const result = cities.filter(city => city.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
 
 		if(result !== undefined) {
-			console.log(result);
 			const options = result.map((items) => ({
 				name: items.name,
 				country: items.country,

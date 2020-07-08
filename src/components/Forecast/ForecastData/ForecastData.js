@@ -51,7 +51,7 @@ const forecastData = props => {
 						data={props.forecastData.uvi}
 						unit=""
 						title="UV-index"
-						icon={<WeatherIcons.WiDaySunny />}/>
+						icon={<WeatherIcons.WiSunrise />}/>
 				</Col>
 				<Col>
 					<BoxOtherData

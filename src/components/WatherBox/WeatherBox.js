@@ -127,7 +127,7 @@ const weatherBox = props => {
 						icon={<WeatherIcons.WiRain />}/>
 				</Col>
 			</Row>
-			<div className="random">test{ Math.random() }</div>
+			<div className="random">{ Math.random() }</div>
 		</div>
 	);
 }

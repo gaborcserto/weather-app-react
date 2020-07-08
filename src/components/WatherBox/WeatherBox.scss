@@ -10,6 +10,7 @@
 			0 100px 80px rgba(0, 0, 0, 0.12);
 	min-height: 100%;
 	margin: 0 auto;
+	opacity: .8;
 	padding: 10px;
 	position: relative;
 
@@ -22,6 +23,10 @@
 
 		&:focus {
 			box-shadow: none;
+		}
+
+		&:hover {
+			color: $blue-2;;
 		}
 	}
 

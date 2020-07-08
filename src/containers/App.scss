@@ -7,7 +7,7 @@
 
 .App {
 	text-align: center;
-	background: #90c9fe;
+	background: linear-gradient(to right, rgb(76, 161, 175), rgb(196, 224, 229))
 }
 
 .main {
@@ -21,6 +21,11 @@
 
 		&__col {
 			margin-bottom: 40px;
+
+			@media (max-width: 575.98px)  {
+				padding-left: 0;
+				padding-right: 0;
+			}
 		}
 	}
 }

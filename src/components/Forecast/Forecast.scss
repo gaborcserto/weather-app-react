@@ -10,6 +10,7 @@
 	height: 100%;
 	min-height: 500px;
 	margin: 0 auto;
+	opacity: .8;
 	padding: 10px;
 	position: relative;
 
@@ -104,21 +105,32 @@
 			}
 
 			&.temp {
-				span {
-					display: inline-block;
+				.minmax {
+					span {
+						display: inline-block;
 
-					&:nth-child(2),
-					&:nth-child(4) {
-						font-size: 10px;
-					}
+						&:nth-child(2),
+						&:nth-child(4) {
+							font-size: 10px;
+						}
 
-					&:nth-child(3) {
-						&:before {
-							content: '';
-							border-left: 1px solid $blue-3;
-							height: 30px;
-							margin-left: 5px;
-							padding-right: 5px;
+						&:nth-child(3) {
+							&:before {
+								content: '';
+								border-left: 1px solid $blue-3;
+								height: 30px;
+								margin-left: 5px;
+								padding-right: 5px;
+							}
+						}
+
+						@media (max-width: 575.98px)  {
+							font-size: 10px;
+
+							&:nth-child(2),
+							&:nth-child(4) {
+								font-size: 8px;
+							}
 						}
 					}
 				}

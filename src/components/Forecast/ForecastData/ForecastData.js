@@ -1,9 +1,9 @@
 import React from 'react';
 import WeatherIcon from '../../WeatherIcon/WeatherIcon';
-import moment from "moment";
-import * as WeatherIcons from "react-icons/wi";
-import BoxOtherData from "../../BoxOtherData/BoxOtherData";
-import { Col, Row } from "react-bootstrap";
+import moment from 'moment';
+import * as WeatherIcons from 'react-icons/wi';
+import BoxOtherData from '../../BoxOtherData/BoxOtherData';
+import { Col, Row } from 'react-bootstrap';
 
 const forecastData = props => {
 	const numberFormat = (number) => Math.round(number * 10) / 10;
@@ -51,7 +51,7 @@ const forecastData = props => {
 						data={props.forecastData.uvi}
 						unit=""
 						title="UV-index"
-						icon={<WeatherIcons.WiDaySunny />}/>
+						icon={<WeatherIcons.WiSunrise />}/>
 				</Col>
 				<Col>
 					<BoxOtherData

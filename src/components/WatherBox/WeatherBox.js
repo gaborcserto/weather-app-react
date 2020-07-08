@@ -98,7 +98,7 @@ const weatherBox = props => {
 						data={props.weatherCurrentData.uvi}
 						unit=""
 						title="UV-index"
-						icon={<WeatherIcons.WiDaySunny />}/>
+						icon={<WeatherIcons.WiSunrise />}/>
 				</Col>
 			</Row>
 			<Row className="weatherBox__otherData">

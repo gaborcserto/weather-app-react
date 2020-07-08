@@ -9,31 +9,32 @@ const weatherIcon = props => {
 		switch (iconId) {
 			case 200:
 				// thunderstorm with light rain
-				break;
+				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
+				return <WeatherIcons.WiNightAltStormShowers/>;
 			case 201:
 				// 	thunderstorm with rain
-				if(sufix === 'd') return <WeatherIcons.WiDayLightning/>;
-				return <WeatherIcons.WiNightAltLightning/>;
+				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
+				return <WeatherIcons.WiNightAltStormShowers/>;
 			case 202:
 				// thunderstorm with heavy rain
-				if(sufix === 'd') return <WeatherIcons.WiDayLightning/>;
-				return <WeatherIcons.WiNightAltLightning/>;
+				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
+				return <WeatherIcons.WiNightAltStormShowers/>;
 			case 210:
 				// light thunderstorm
 				if(sufix === 'd') return <WeatherIcons.WiDayLightning/>;
 				return <WeatherIcons.WiNightAltLightning/>;
 			case 230:
 				// thunderstorm with light drizzle
-				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
-				return <WeatherIcons.WiNightAltStormShowers/>;
+				if(sufix === 'd') return <WeatherIcons.WiDayThunderstorm/>;
+				return <WeatherIcons.WiNightAltThunderstorm/>;
 			case 231:
 				// thunderstorm with drizzle
-				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
-				return <WeatherIcons.WiNightAltStormShowers/>;
+				if(sufix === 'd') return <WeatherIcons.WiDayThunderstorm/>;
+				return <WeatherIcons.WiNightAltThunderstorm/>;
 			case 232:
 				// thunderstorm with heavy drizzle 232
-				if(sufix === 'd') return <WeatherIcons.WiDayStormShowers/>;
-				return <WeatherIcons.WiNightAltStormShowers/>;
+				if(sufix === 'd') return <WeatherIcons.WiDayThunderstorm/>;
+				return <WeatherIcons.WiNightAltThunderstorm/>;
 			default:
 				// thunderstorm 211
 				// ragged thunderstorm 221
@@ -95,6 +96,9 @@ const weatherIcon = props => {
 			case 531:
 				// ragged shower rain
 				return <WeatherIcons.WiRain/>;
+			default:
+				if(sufix === 'd') return <WeatherIcons.WiDayRain/>;
+				return <WeatherIcons.WiNightAltRain/>;
 		}
 	}
 
@@ -154,6 +158,9 @@ const weatherIcon = props => {
 			case 781:
 				// tornado
 				return <WeatherIcons.WiTornado/>;
+			default:
+				if(sufix === 'd') return <WeatherIcons.WiDayFog/>;
+				return <WeatherIcons.WiNightFog/>;
 		}
 	}
 
@@ -178,6 +185,10 @@ const weatherIcon = props => {
 			case 804:
 				// overcast clouds: 85-100%
 				return <WeatherIcons.WiCloudy/>;
+			default:
+				// broken clouds: 51-84% 802
+				if(sufix === 'd') return <WeatherIcons.WiDayCloudy/>;
+				return <WeatherIcons.WiNightAltCloudy/>;
 		}
 	}
 

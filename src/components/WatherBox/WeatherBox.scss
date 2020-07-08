@@ -26,7 +26,13 @@
 		}
 
 		&:hover {
-			color: $blue-2;;
+			color: $blue-2;
+		}
+
+		&:active {
+			svg {
+				animation: icon-spin .5s linear infinite normal both;
+			}
 		}
 	}
 

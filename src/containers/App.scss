@@ -7,7 +7,7 @@
 
 .App {
 	text-align: center;
-	background: linear-gradient(to right, rgb(76, 161, 175), rgb(196, 224, 229))
+	background: linear-gradient(to right, rgb(76, 161, 175), rgb(196, 224, 229));
 }
 
 .main {
@@ -30,24 +30,15 @@
 	}
 }
 
-@-webkit-keyframes icon-spin {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(359deg);
-		transform: rotate(359deg);
-	}
+div, h3, h2, span, small {
+	@include transition(all 1s ease-in-out);
 }
 
 @keyframes icon-spin {
 	0% {
-		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
 	100% {
-		-webkit-transform: rotate(359deg);
 		transform: rotate(359deg);
 	}
 }

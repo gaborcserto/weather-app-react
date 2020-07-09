@@ -32,7 +32,7 @@ const forecastData = props => {
 					<div className="forecast__data__weather">
 					<WeatherIcon
 						type={props.forecastData.weather[0].id}
-						sufix="d" />
+						suffix="d" />
 						<h3>{props.forecastData.weather[0].description}</h3>
 					</div>
 				</Col>

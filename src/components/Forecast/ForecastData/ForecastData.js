@@ -7,7 +7,7 @@ import { Col, Row } from "react-bootstrap";
 
 const forecastData = props => {
 	const numberFormat = (number) => Math.round(number * 10) / 10;
-	const day =  moment(props.forecastData.dt, "X").utcOffset(1).format('YYYY.MM.DD.');
+	const day =  moment(props.forecastData.dt, "X").utcOffset(1).format('DD.MM.YYYY');
 	const dayName =  moment(props.forecastData.dt, "X").utcOffset(1).format('ddd');
 
 	const tempMinMax = (
@@ -32,7 +32,7 @@ const forecastData = props => {
 					<div className="forecast__data__weather">
 					<WeatherIcon
 						type={props.forecastData.weather[0].id}
-						sufix={props.sufix} />
+						sufix="d" />
 						<h3>{props.forecastData.weather[0].description}</h3>
 					</div>
 				</Col>

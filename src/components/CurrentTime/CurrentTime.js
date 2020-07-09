@@ -4,7 +4,7 @@ import moment from 'moment';
 class currentTime extends React.Component {
 	state = {
 		currentTime: moment().format('HH:mm:ss'),
-		currentDate: moment().format('YYYY.MM.DD.')
+		currentDate: moment().format('DD.MM.YYYY')
 	};
 
 	componentDidMount() {
@@ -21,7 +21,7 @@ class currentTime extends React.Component {
 	tick() {
 		this.setState({
 			currentTime: moment().format('HH:mm:ss'),
-			currentDate: moment().format('YYYY.MM.DD.')
+			currentDate: moment().format('DD.MM.YYYY')
 		});
 	}
 

@@ -4,13 +4,11 @@ import ForecastData from './ForecastData/ForecastData'
 
 
 const forecast = props => {
-	let dayOrNight = '',
-		sufix = 'd';
+	let dayOrNight = '';
 	const currentTime = moment().valueOf();
 
 	if(props.weatherCurrentData.sunset > currentTime || props.weatherCurrentData.sunsrise < currentTime) {
 		dayOrNight = ' nightMode';
-		sufix = 'n';
 	}
 
 	return (
@@ -20,7 +18,6 @@ const forecast = props => {
 				props.weatherDailyData.map((value, index) => {
 					if(index > 0) {
 						return <ForecastData
-							sufix={sufix}
 							forecastData={value}
 							key={index}/>;
 					} else {

@@ -63,6 +63,10 @@
 			h3 {
 				font-size: 12px;
 				text-transform: capitalize;
+
+				@media (max-width: 575.98px)  {
+					font-size: 10px;
+				}
 			}
 		}
 
@@ -172,6 +176,10 @@
 
 		&__title {
 			font-size: 12px;
+
+			@media (max-width: 575.98px)  {
+				font-size: 10px;
+			}
 		}
 	}
 

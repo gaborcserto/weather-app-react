@@ -18,6 +18,10 @@
 		color: #616161;
 		font-size: 40px;
 		font-weight: normal;
+
+		@media (max-width: 575.98px)  {
+			font-size: 26px;
+		}
 	}
 
 	&__data {
@@ -37,6 +41,10 @@
 				color: $blue-3;
 				font-size: 12px;
 				padding-left: 10px;
+
+				@media (max-width: 575.98px) {
+					font-size: 8px;
+				}
 			}
 		}
 
@@ -106,6 +114,10 @@
 
 			&.temp {
 				.minmax {
+					@media (max-width: 575.98px)  {
+						height: 21px;
+					}
+
 					span {
 						display: inline-block;
 
@@ -116,8 +128,8 @@
 
 						&:nth-child(3) {
 							&:before {
-								content: '';
 								border-left: 1px solid $blue-3;
+								content: '';
 								height: 30px;
 								margin-left: 5px;
 								padding-right: 5px;
@@ -125,11 +137,21 @@
 						}
 
 						@media (max-width: 575.98px)  {
-							font-size: 10px;
+							font-size: 8px;
 
 							&:nth-child(2),
 							&:nth-child(4) {
-								font-size: 8px;
+								font-size: 6px;
+							}
+
+							&:nth-child(3) {
+								&:before {
+									border: 0;
+									content: '/';
+									height: 20px;
+									margin-left: 2px;
+									padding-right: 2px;
+								}
 							}
 						}
 					}

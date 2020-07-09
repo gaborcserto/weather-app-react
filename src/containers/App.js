@@ -6,6 +6,7 @@ import WeatherBox from '../components/WatherBox/WeatherBox';
 import Forecast from '../components/Forecast/Forecast';
 import Loader from '../components/Loader/Loader';
 import cities from 'cities.json';
+import moment from 'moment';
 import './App.scss';
 
 class App extends React.Component {
@@ -84,11 +85,21 @@ class App extends React.Component {
 
 	render() {
 		let boxContent = <Loader />;
+		const currentTime = moment().valueOf();
+		let dayOrNight = '',
+			suffix = 'd';
 
 		if (this.state.isLoadedCurrent) {
+			if(this.state.weatherCurrentData.sunset > currentTime || this.state.weatherCurrentData.sunrise < currentTime) {
+				dayOrNight = ' nightMode';
+				suffix = 'n';
+			}
+
 			boxContent = (<React.Fragment>
 				<Col className="main__content__col" md={12} lg={6}>
 					<WeatherBox
+					suffix={suffix}
+					dayOrNight={dayOrNight}
 					city={this.state.city}
 					country={this.state.country}
 					weatherCurrentData={this.state.weatherCurrentData}
@@ -97,6 +108,7 @@ class App extends React.Component {
 				</Col>
 				<Col className="main__content__col" md={12} lg={6}>
 					<Forecast
+						dayOrNight={dayOrNight}
 						weatherCurrentData={this.state.weatherCurrentData}
 						weatherDailyData={this.state.weatherDailyData}
 					/>

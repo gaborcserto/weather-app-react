@@ -5,7 +5,7 @@ const weatherIcon = props => {
 	let weatherType;
 
 	if (props.type) {
-		weatherType = <i className={`owf owf-3x owf-${props.type}-${props.sufix}`} />;
+		weatherType = <i className={`owf owf-3x owf-${props.type}-d`} />;
 	} else {
 		weatherType = <WeatherIcons.WiAlien/>;
 	}

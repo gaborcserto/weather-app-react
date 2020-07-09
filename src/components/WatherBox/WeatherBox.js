@@ -12,13 +12,10 @@ import * as WeatherIcons from 'react-icons/wi';
 import moment from "moment";
 
 const weatherBox = props => {
-	let dayOrNight = '',
-		sufix = 'd',
-		convertedRainData = '0';
+	let convertedRainData = '0';
 	const dataTime =  moment(props.weatherCurrentData.dt, "X").utcOffset(1).format('HH:mm:ss');
 	const rainData = props.weatherCurrentData.rain;
 	const numberFormat = (number) => Math.round(number * 10) / 10;
-	const currentTime = moment().valueOf();
 
 	const tempMinMax = (
 		<React.Fragment>
@@ -31,18 +28,13 @@ const weatherBox = props => {
 
 	if (rainData > 0) convertedRainData = rainData[Object.keys(rainData)[0]];
 
-	if(props.weatherCurrentData.sunset > currentTime || props.weatherCurrentData.sunsrise < currentTime) {
-		dayOrNight = ' nightMode';
-		sufix = 'n';
-	}
-
 	return (
-		<div className={`weatherBox${dayOrNight}`}>
+		<div className={`weatherBox${props.dayOrNight}`}>
 			<Button variant="link" className="weatherBox__reloadButton" onClick={props.clicked}><AiOutlineReload /></Button>
 			<div className="weatherBox__mainContent">
 				<WeatherIcon
 					type={props.weatherCurrentData.weather[0].id}
-					sufix={sufix} />
+					suffix={props.suffix} />
 				<WeatherBoxTemp
 					rootClass="weatherBox__mainContent"
 				    temp={numberFormat(props.weatherCurrentData.temp)}

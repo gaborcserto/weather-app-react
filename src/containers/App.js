@@ -90,7 +90,7 @@ class App extends React.Component {
 			suffix = 'd';
 
 		if (this.state.isLoadedCurrent) {
-			if(this.state.weatherCurrentData.sunset > currentTime || this.state.weatherCurrentData.sunrise < currentTime) {
+			if(this.state.weatherCurrentData.sunset > currentTime && this.state.weatherCurrentData.sunrise < currentTime) {
 				dayOrNight = ' nightMode';
 				suffix = 'n';
 			}

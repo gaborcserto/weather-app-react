@@ -11,7 +11,7 @@
     "bootstrap": "^4.5.3",
     "cities.json": "^1.1.5",
     "moment": "^2.29.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "owfont": "https://github.com/psieniarski/owfont.git",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
